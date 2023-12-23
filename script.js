@@ -1,118 +1,206 @@
 
-let quizData = [
+let popup=document.querySelector(".popup");
+let login=document.getElementById("btn");
+// alert(login)
+function toggle()
+{
+       if(login.innerText==="Login")
+       {
+        alert("Please Login First");
+        return;
+       }
+    if(popup.style.display==="none")
     {
-        "category": "HTML",
-        "questions": [
-            {
-                "question": "What does HTML stand for?",
-                "options": ["Hyper Text Markup Language", "High Tech Machine Language", "Hyperlink and Text Markup Language", "Home Tool Markup Language"],
-                "answer": "Hyper Text Markup Language"
-            },
-            {
-                "question": "Which tag is used to define a hyperlink?",
-                "options": ["<hyper>", "<link>", "<a>", "<url>"],
-                "answer": "<a>"
-            },
-            {
-                "question": "Which tag is used to create a numbered list?",
-                "options": ["<ul>", "<list>", "<ol>", "<li>"],
-                "answer": "<ol>"
-            },
-            {
-                "question": "What is the correct HTML for inserting an image?",
-                "options": ["<img href='image.jpg'>", "<image src='image.jpg'>", "<img src='image.jpg'>", "<picture>image.jpg</picture>"],
-                "answer": "<img src='image.jpg'>"
-            },
-            {
-                "question": "Which HTML attribute specifies an alternate text for an image, if the image cannot be displayed?",
-                "options": ["alt", "title", "description", "alttext"],
-                "answer": "alt"
-            }
-        ]
-    },
-    {
-        "category": "CSS",
-        "questions": [
-            {
-                "question": "Which property is used to change the background color?",
-                "options": ["text-color", "bgcolor", "color", "background-color"],
-                "answer": "background-color"
-            },
-            {
-                "question": "Which CSS property is used to control the text size?",
-                "options": ["text-size", "font-style", "text-style", "font-size"],
-                "answer": "font-size"
-            },
-            {
-                "question": "How do you select an element with id 'demo'?",
-                "options": ["#demo", ".demo", "*demo", "@demo"],
-                "answer": "#demo"
-            },
-            {
-                "question": "Which CSS property is used to control the text color of an element?",
-                "options": ["color", "font-color", "text-color", "background-color"],
-                "answer": "color"
-            },
-            {
-                "question": "Which property is used to add shadows to text?",
-                "options": ["text-shadow", "shadow", "font-shadow", "shadow-text"],
-                "answer": "text-shadow"
-            }
-        ]
-    },
-    // ... Similar structures for JS, Java, SQL, Spring can follow with 5 questions each.
-];
-
-
-
-const ipCategory = "HTML";//for example
-
-// adding questions to quiz
-const quiz = document.getElementById("quiz");
-const quizDiv = document.createElement("div");
-    // add a qustion text
-function addQuestion(categoryObj){
-    categoryObj.forEach(ele => {
-        if(ele.category === ipCategory){
-            ele.questions.forEach(quest => {
-                //question
-                const questH3 = document.createElement("h3");
-                questH3.innerText=quest.question;
-                quizDiv.appendChild(questH3);
-                //options
-                const optionsDiv = document.createElement("div");
-                for(let key in quest.options){
-                    // options text
-                    const serialNo = document.createElement("h5");
-                    const cell = document.createElement("h4");
-                    serialNo.innerText = String.fromCharCode(65 + parseInt(key)) + ".";
-                    cell.innerText = quest.options[key];
-                    optionsDiv.appendChild(serialNo); //serial number of options to be appended
-                    optionsDiv.appendChild(cell);// options to be appended
-                }
-                quizDiv.appendChild(optionsDiv);
-            });
-        }
-    });
-    
-    quiz.appendChild(quizDiv); 
+        popup.style.display="flex";
+    }
+    else popup.style.display="none";
 }
 
 
 
-//popup form element selected-deselcted
+//let's get that close..
 
-document.addEventListener('DOMContentLoaded', function() {
-    const checkbox = document.getElementById('html');
-    const closeIcon = document.getElementById('closeIcon');
+let cls=document.querySelector(".close");
 
-    checkbox.addEventListener('change', function() {
-        if (this.checked) {
-            checkbox.parentElement.style.backgroundColor = '#FCC822';
-            closeIcon.style.display = 'block';
-        } else {
-            checkbox.parentElement.style.backgroundColor = '#D1D1D1';
-            closeIcon.style.display = 'none';
-        }
-    });
+cls.addEventListener('click',toggle);
+
+
+let str=document.querySelector(".start");
+str.addEventListener('click',toggle);
+
+
+
+login.addEventListener('click',()=>{
+    if(login.innerText!="Login")return;
+   let name= prompt("Enter Your Name");
+    login.innerHTML=`<span style="color: #FCC822; font-size: large; border:none;"><i class="fa-solid fa-user"></i> ${name} <i class="fa-solid fa-caret-down"></i></span>`;
+})
+let totalScore=0;
+
+let first=false;
+function check(x,a1,y) 
+{
+    if(first)return;
+    first=true;
+   let card=document.querySelectorAll(".card");    
+   card[y-1].style.backgroundColor="#FCC822";
+    if(x==a1)
+    {
+        let score=document.querySelector(".score");
+        score.innerText="Score: "+ (totalScore=totalScore+5);
+    }
+
+    if(x===a1){
+        alert("Your Answer is Correct!!");
+    }
+    else alert("Your Answer is Wrong!!!");
+    
+}
+let currQ=1;
+let nextBtn=document.querySelector(".next");
+let pervBtn=document.querySelector(".prev");
+
+let skipBtn=document.querySelector(".skip");
+let submit=document.querySelector(".submit");
+
+function nextQuestion(cq,nq,isPrev) 
+{
+    if(isPrev && cq==1){
+    pervBtn.style.display="none";
+        return;}
+    if(currQ==4 && isPrev==false)
+    {
+      return
+    };
+
+    if(nq==4)
+    {
+       nextBtn.style.display="none";
+       skipBtn.style.display="none";
+       submit.style.display="flex";
+      
+    }
+    else
+    {
+        nextBtn.style.display="flex"; 
+        skipBtn.style.display="flex"
+        submit.style.display="none";
+            
+    }
+    pervBtn.style.display="flex";
+
+    if(nq==1) pervBtn.style.display="none";
+
+
+    first=false;
+    let cls=".que"+cq;
+
+    let cqd=document.querySelector(cls);
+
+    cqd.style.display="none";
+
+    let cln=".que"+nq;
+    currQ=nq;
+
+    let nqd=document.querySelector(cln);
+
+    nqd.style.display="flex";
+}
+
+
+
+
+nextBtn.addEventListener('click',()=>{
+    nextQuestion(currQ,currQ+1,false);
 });
+
+
+
+
+
+pervBtn.addEventListener('click',()=>{
+    nextQuestion(currQ,currQ-1,true);
+});
+
+
+skipBtn.addEventListener('click',()=>{
+    nextQuestion(currQ,currQ+1,false);
+})
+
+let homepage=document.querySelector(".homepage");
+let questions=document.getElementById("questions");
+
+let afterTest=document.querySelector(".afterTest");
+
+let scoreAfterTest=document.getElementById("afterTest");
+
+submit.addEventListener('click',()=>
+{
+   afterTest.style.display="flex";
+    scoreAfterTest.innerText="YOU SCORE IS: "+totalScore;
+    totalScore=0;
+
+    let cln=".que"+currQ;
+    let nqd=document.querySelector(cln);
+
+    nqd.style.display="none";
+    questions.style.display="none";
+});
+
+
+
+let startQuiz=document.getElementById("startQuiz");
+
+let badges=0;
+function badge(badgeNo)
+{
+   
+    let id=".badge"+badgeNo;
+    let si=document.querySelector(id);
+    function toggle() {
+        if(si.style.border!="2px solid black"){
+            si.style.border="2px solid black";
+            ++badges;
+            return;
+        }
+        si.style.border="none";
+       if(badges>0)--badges;
+    }
+    toggle();
+}
+
+
+startQuiz.addEventListener('click',()=>
+{
+    if(badges<5)
+    {
+        alert("You have selected Only: "+badges);
+        return;
+    }
+    homepage.style.display="none";
+    questions.style.display="flex";
+    popup.style.display="none";
+
+    let ele=document.querySelector(".que1");
+    ele.style.display="flex";
+});
+
+
+let closeAfterTest=document.querySelector(".closeAfterTest");
+
+closeAfterTest.addEventListener('click',()=>{
+    homepage.style.display="flex";
+   afterTest.style.display='none';
+})
+
+function howit(params) {
+    alert("First Login and then Click on Start Quiz Button");
+}
+
+function about() {
+    alert("Author:- Meghana Bait");
+}
+
+function feature(){
+    alert("You Can Give the Mock on this platform!");
+}
