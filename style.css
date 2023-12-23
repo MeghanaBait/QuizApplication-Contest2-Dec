@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --yellow: #FCC822;
+    --gray: #E0E0E0;
+    --gray-dark: #D1D1D1;
+    --black: #333333;
+    --white: #fff;
+
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin-inline: 5%;
+}
+
+.navbar-brand {
+    font-size: 27px;
+    font-weight: 400;
+    line-height: 40px;
+    text-align: left;
+
+}
+
+.navbar-brand span {
+    color: var(--yellow);
+}
+
+.navbar {
+    border-bottom: 0.58px solid #ECECE8;
+}
+
+.text-gray {
+    color: var(--gray);
+}
+
+#navbarSupportedContent {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+}
+
+#navbarSupportedContent ul li a {
+    margin-right: 3rem;
+}
+
+#btn-login {
+    color: var(--yellow);
+    border: 0.87px solid var(--yellow);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0.5% 2%;
+    line-height: 21px;
+    border-radius: 0;
+    background-color: var(--white);
+}
+
+#btn-login:hover {
+    box-shadow: 0px 10.450244903564453px 23.22276496887207px -6.966829299926758px #FBE18F;
+    background-color: var(--yellow);
+    color: var(--white);
+}
+
+#btn-login {
+    text-decoration: none;
+    color: var(--yellow);
+}
+
+.home {
+    height: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.home div {
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.home div h1 {
+    font-family: Roboto;
+    font-size: 37.16px;
+    font-weight: 500;
+    line-height: 43.54px;
+    color: var(--black);
+    margin-bottom: 5%;
+}
+
+.home img {
+    Width: 403.29px;
+    Height: 408.07px;
+}
+
+.home div p {
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    color: #828282;
+    border-left: 1.16px solid var(--black);
+    padding-inline: 1%;
+    margin-bottom: 10%;
+}
+
+.custom-btn {
+    width: 119.6px;
+    height: 37.16px;
+    font-family: Poppins;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+    background-color: var(--yellow);
+    color: var(--white);
+    border-radius: 0;
+    border: none;
+    box-shadow: 0px 10.450244903564453px 23.22276496887207px -6.966829299926758px #FBE18F;
+
+}
+
+.home img {
+    width: 0wv;
+}
+
+.vector {
+    position: absolute;
+    bottom: 0;
+    /* Adjust as needed */
+    left: 0;
+
+    width: 110px;
+    /* Adjust to change the size */
+    height: 120px;
+    /* Adjust to change the size */
+    border-top-right-radius: 100%;
+    /* This makes the top-left corner a quarter circle */
+    border: 2.9px solid var(--yellow);
+    border-left: none;
+    border-bottom: none;
+}
+
+.user {
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    gap: 5%;
+}
+
+.user p,
+i {
+    font-family: Poppins;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    color: var(--yellow);
+    vertical-align: center;
+}
+
+
+
+/* popup */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #00000080;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup>.popup-body {
+    font-family: Roboto;
+    background-color: var(--white);
+    width: 80%;
+    height: 80%;
+    text-align: center;
+}
+
+.popup-body>h1 {
+    text-align: center;
+    margin: 5% 0 2%;
+    font-size: 37px;
+    font-weight: 500;
+    line-height: 44px;
+}
+
+.popup-body>p {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+}
+
+.popup-form {
+    padding:5%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.popup-form >button{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 100px 150px;
+}
+
+.hidden-checkbox {
+    display: none;
+}
+
+.form-group>label {
+    display: inline-block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background-color: #D1D1D1;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.checkbox-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    color: #333;
+}
+
+.close-icon {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 16px;
+    height: 16px;
+    display: none;
+    background-color: black;
+    color: white;
+    border-radius: 2px;
+    text-align: center;
+    line-height: 16px;
+    cursor: pointer;
+}
